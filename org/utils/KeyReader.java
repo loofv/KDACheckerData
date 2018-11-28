@@ -1,13 +1,13 @@
-package utils.rw;
+package utils;
 
 import java.io.*;
 import java.util.Scanner;
 
 public class KeyReader {
 
-  public String currentKey;
+  public static String currentKey;
 
-  public KeyReader (String currentKey) throws FileNotFoundException {
+  private String FileScanner (String currentKey) throws FileNotFoundException {
     StringBuilder sb = new StringBuilder();
     Scanner sc = new Scanner (new FileReader("api_key.txt"));
     try {
@@ -21,8 +21,9 @@ public class KeyReader {
     /*catch (FileNotFoundException fnfe){
       System.err.println(fnfe + "File not found");
     }*/
+    return currentKey;
   }
-  public String getCurrentKey(){
+  public static String getCurrentKey(){
       return currentKey.toString();
     }
 

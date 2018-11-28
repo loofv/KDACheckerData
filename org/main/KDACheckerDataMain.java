@@ -1,7 +1,9 @@
+import utils.Match;
+
 public class KDACheckerDataMain {
 
   public static void main (String[] args) {
-    System.out.println("whatever");
+    Match m = new Match();
 
   }
 }
