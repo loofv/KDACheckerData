@@ -1,4 +1,4 @@
-package org.utils;
+package utils;
 
 //import Player;
 
