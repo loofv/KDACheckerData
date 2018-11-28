@@ -23,7 +23,7 @@ public class Match {
 
   public String MatchList() {
 
-
+   System.out.println(END_POINT + QUERY + API_KEY);
 
     return null;
   }
