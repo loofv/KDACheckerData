@@ -1,3 +1,5 @@
+package main;
+
 import utils.*;
 
 public class KDACheckerDataMain {
