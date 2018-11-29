@@ -3,9 +3,9 @@ package utils;
 import java.io.*;
 import java.util.Scanner;
 
-public class KeyReader {
+public  class KeyReader {
 
-  public static String currentKey;
+  private static String currentKey;
 
   private String FileScanner (String currentKey) throws FileNotFoundException {
     StringBuilder sb = new StringBuilder();
@@ -21,7 +21,7 @@ public class KeyReader {
 
     return currentKey;
   }
-  public static String getCurrentKey(){
+  public  String getCurrentKey(){
       return currentKey.toString();
     }
 

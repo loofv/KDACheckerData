@@ -16,16 +16,15 @@ import java.net.*;
 
 public class Match {
 
-  static KeyReader kr = new KeyReader();
-  private static       String API_KEY   = kr.getCurrentKey();
-  private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
-  private static final String QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
+  KeyReader kr = new KeyReader();
+  private final String API_KEY   = kr.getCurrentKey();
+  private final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
+  private final String QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
 
-  public String MatchList() {
+  public  void  MatchList() {
 
    System.out.println(END_POINT + QUERY + API_KEY);
 
-    return null;
   }
 
 
