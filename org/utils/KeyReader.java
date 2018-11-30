@@ -9,7 +9,7 @@ public  class KeyReader {
 
   private String FileScanner (String currentKey) throws FileNotFoundException {
     StringBuilder sb = new StringBuilder();
-    Scanner sc = new Scanner (new FileReader("api_key.txt"));
+    Scanner sc = new Scanner (new FileReader("key.txt"));
 
     try {
         while(sc.hasNext()){ sb.append(sc.next());}
@@ -22,7 +22,8 @@ public  class KeyReader {
     return currentKey;
   }
   public  String getCurrentKey(){
-      return currentKey.toString();
+    //  return currentKey.toString();
+    return "testar felsoekning";
     }
 
 }

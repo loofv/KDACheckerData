@@ -11,7 +11,7 @@ public class KDACheckerDataMain {
     Match m = new Match();
     m.MatchList();
 
-    System.out.println("bajs");
+    System.out.println("pointless main printline");
 
   }
 }
