@@ -9,7 +9,9 @@ public class KDACheckerDataMain {
 
   public static void main (String[] args) {
     Match m = new Match();
-  //  m= Match().MatchList();
+    m.MatchList();
+
+    System.out.println("bajs");
 
   }
 }
