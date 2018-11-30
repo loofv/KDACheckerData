@@ -1,4 +1,4 @@
-package utils;
+package org.utils;
 
 import java.io.*;
 import java.util.Scanner;
