@@ -1,4 +1,4 @@
-package classes.servlets;
+package servlets;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
