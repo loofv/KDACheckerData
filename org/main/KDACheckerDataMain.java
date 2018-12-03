@@ -9,9 +9,7 @@ public class KDACheckerDataMain {
 
   public static void main (String[] args) {
     Match m = new Match();
-    //m.MatchList();
-
-    System.out.println("pointless main printline");
+    m.MatchList();
 
   }
 }

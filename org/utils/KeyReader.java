@@ -13,21 +13,18 @@ public class KeyReader  {
 
   public String readKey () /*throws FileNotFoundException^*/ {
 
-    System.out.println(KEY_PATH);
+//    System.out.println(KEY_PATH);
     pelle = "fan funka inte";
 
     try {
     // pass the path to the file as a parameter
-    File file =
-      new File(KEY_PATH);
-    Scanner sc = new Scanner(file);
-    pelle = sc.nextLine();
-    sc.close();
-
-    System.out.println(pelle);
-
+      File file =
+        new File(KEY_PATH);
+      Scanner sc = new Scanner(file);
+      pelle = sc.nextLine();
+      sc.close();
   } catch  (FileNotFoundException fnfe) {
-      System.err.println(fnfe.getMessage() + "FEL");
+      System.err.println(fnfe.getMessage() + "File not found");
       }
 
     return pelle;
