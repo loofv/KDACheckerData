@@ -4,11 +4,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
  <servlet>
- <servlet-name>KDAChecker</servlet-name>
- <servlet-class>localhost</servlet-class>
+ <servlet-name>KDAServlet</servlet-name>
+ <servlet-class>servlets.KDAServlet</servlet-class>
  </servlet>
  <servlet-mapping>
- <servlet-name>KDAChecker</servlet-name>
+ <servlet-name>KDAServlet</servlet-name>
  <url-pattern>/kdachecker</url-pattern>
  </servlet-mapping>
 </web-app>
