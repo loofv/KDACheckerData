@@ -7,14 +7,14 @@ import java.io.FileNotFoundException;
 public class KeyReader  {
 
   String key;
-  String sep = System.getProperty("file.separator");
+//String sep = System.getProperty("file.separator");
   //String KEY_PATH = "c:\\Cygwin64\\" + System.getProperty("user.home") + sep +
   String KEY_PATH = "key.txt";
 
   public String readKey () /*throws FileNotFoundException^*/ {
 
 //    System.out.println(KEY_PATH);
-    key = "fan funka inte";
+    key = "Could not read file content";
 
     try {
     // pass the path to the file as a parameter
@@ -28,6 +28,5 @@ public class KeyReader  {
       }
 
     return key;
-    System.out.println("Testing that the KEY was läsbart" + key);
   }
 }
