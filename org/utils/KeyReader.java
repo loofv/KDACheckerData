@@ -23,6 +23,9 @@ public class KeyReader  {
     Scanner sc = new Scanner(file);
     pelle = sc.nextLine();
     sc.close();
+
+    System.out.println(pelle);
+
   } catch  (FileNotFoundException fnfe) {
       System.err.println(fnfe.getMessage() + "FEL");
       }
