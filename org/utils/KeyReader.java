@@ -11,7 +11,7 @@ public class KeyReader  {
   //String KEY_PATH = "c:\\Cygwin64\\" + System.getProperty("user.home") + sep +
   String KEY_PATH = "key.txt";
 
-  public String readKeyReader2 () /*throws FileNotFoundException^*/ {
+  public String readKey () /*throws FileNotFoundException^*/ {
 
     System.out.println(KEY_PATH);
     pelle = "fan funka inte";
