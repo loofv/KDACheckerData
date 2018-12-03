@@ -17,9 +17,9 @@ import java.net.*;
 public class Match {
 
   KeyReader kr = new KeyReader();
-  private final String API_KEY = kr.readKey(); //readKeyReader2();
+  private final String        API_KEY   = kr.readKey(); //readKeyReader2();
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
-  private final String QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
+  private final String        QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
 
 
   public  void  MatchList() {
