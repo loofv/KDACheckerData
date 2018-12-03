@@ -1,5 +1,7 @@
 //Hämtad via curl, queryn ligger på Loves drive.
 //innehåller summonerName och participantId(temporär variabel i Match) för att koppla ihop med en match och dess stats.
+/* $ curl 'https://euw1.api.riotgames.com/lol/match/v3/matches/3844375796?api_key=| jq '.participantIdentities[]|{pID:
+.participantId, summonerName: .player.summonerName}' */
 {
   "pID": 1,
   "summonerName": "Thespuk"
