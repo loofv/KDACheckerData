@@ -1,7 +1,7 @@
 package org.utils;
 
 //import Player;
-//import KeyReader;
+//import org.utils.KeyReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,7 +27,7 @@ public class Match {
 
   public void JsonParser () throws FileNotFoundException { //Denna ska kunna läsa en JSon fil
     try{
-        JsonReader reader     = new Json.createReader( new FileReader(jsonFile));
+        JsonReader reader     = new Json.createRead( new FileReader(jsonFile));
         JsonStruct jsonStruct = reader.read();
 
         if (jsonStruct = reader.getValueType().equals(OBJECT)) {
