@@ -3,23 +3,23 @@ package org.utils;
 //import Player;
 //import org.utils.KeyReader;
 import java.io.IOException;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.io.FileReader;
 //import java.util.Scanner;
-import java.net.URL;
-//import javax.json.*;
-//import javax.servlet.*;
-//fixa imports, importerar allt for now.
+import java.net.URL;                                  //fixa imports, importerar allt for now.
 import java.util.stream.Collectors;
 import java.net.*;
 import static javax.json.JsonValue.ValueType.*;
+/*
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
-import javax.json.JsonReader;
+import javax.json.JsonReader;*/
+import javax.json.*;
+
 
 public class Match {
 
@@ -32,17 +32,17 @@ public class Match {
 
   public void JsonParser () /*throws FileNotFoundException*/ { //Denna ska kunna läsa en JSon fil
     try{
-
         JsonReader reader     = new Json.createReader( new FileReader(jsonFile));
         JsonStruct jsonStruct = reader.read();
 
         if (jsonStruct = reader.getValueType().equals(OBJECT)) {
           System.out.println("Casting to JsonObject...");
-          JsonObject jo = (Json) jsonStruct;}
+          JsonObject jo = (Json) jsonStruct;
+        }
 
         System.out.println("Summonername: " + jo.getString("summonerName"));
 
-    } catch(JsonException e) {
+    }catch(JsonException e) {
         System.err.println("File not found: " + e.getMessage());
     }
   //    JsonArray() jarr = jo.getJsonArray("");
