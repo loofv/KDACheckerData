@@ -28,11 +28,10 @@ public class Match {
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
   private final String        QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
 
-
-
+  public String jsonPath = "..\\..\\json\\testMatchIdentities.json";
   public void JsonParser () /*throws FileNotFoundException*/ { //Denna ska kunna läsa en JSon fil
     try{
-        JsonReader reader     = new Json.createReader( new FileReader(jsonFile));
+        JsonReader reader     = new Json.createRead( new FileReader(jsonPath));
         JsonStruct jsonStruct = reader.read();
 
         if (jsonStruct = reader.getValueType().equals(OBJECT)) {
