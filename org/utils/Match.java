@@ -13,12 +13,13 @@ import java.net.URL;
 //fixa imports, importerar allt for now.
 import java.util.stream.Collectors;
 import java.net.*;
-//import static javax.json.JsonValue.ValueType.*;
+import static javax.json.JsonValue.ValueType.*;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
+import javax.json.JsonReader;
 
 public class Match {
 
@@ -32,7 +33,7 @@ public class Match {
   public void JsonParser () /*throws FileNotFoundException*/ { //Denna ska kunna läsa en JSon fil
     try{
 
-        JsonReader reader     = new Json.createRead( new FileReader(jsonFile));
+        JsonReader reader     = new Json.createReader( new FileReader(jsonFile));
         JsonStruct jsonStruct = reader.read();
 
         if (jsonStruct = reader.getValueType().equals(OBJECT)) {
