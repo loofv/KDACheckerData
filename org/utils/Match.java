@@ -36,10 +36,9 @@ public class Match {
         JsonStruct jsonStruct = reader.read();
 
         if (jsonStruct = reader.getValueType().equals(OBJECT)) {
-
           System.out.println("Casting to JsonObject...");
-          JsonObject jo = (Json) jsonStruct;
-        }
+          JsonObject jo = (Json) jsonStruct;}
+
         System.out.println("Summonername: " + jo.getString("summonerName"));
 
     } catch(JsonException e) {
