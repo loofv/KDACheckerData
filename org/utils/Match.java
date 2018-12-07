@@ -22,10 +22,14 @@ import javax.json.*;
 public class Match {
 
   KeyReader kr = new KeyReader();
-  private final String        API_KEY   = kr.readKey(); //readKeyReader2();
+  private final String        API_KEY   = kr.readKey();
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
   private final String        QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
-  public String               jsonPath  = "..\\..\\json\\testMatchIdentities.json";
+  private String              sep       = System.getProperty("file.separator");
+  public String               jsonPath  = /*"c:\\Cygwin64\\" +*/ System.getProperty("user.home")
+                                                              + sep + "json" + sep + "testMatchIdentities.json";
+
+
 
   public void JsonParser () {
     try{
@@ -38,7 +42,7 @@ public class Match {
           System.out.println("Summonername: " + jo.getString("summonerName"));
         }
     }catch(JsonException | FileNotFoundException e) {
-        System.err.println("File not found: " + e.getMessage());
+        System.err.println("File not found: " + e.getMessage() + "\n" + jsonPath );
     }
   }
 
