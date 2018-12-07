@@ -26,12 +26,12 @@ public class Match {
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
   private final String        QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
   private String              sep       = System.getProperty("file.separator");
-  public String               jsonPath  = /*"c:\\Cygwin64\\" +*/ System.getProperty("user.home")
+  private String              jsonPath  = /*"c:\\Cygwin64\\" +*/ System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
-
-
+  public String test1 = "THIS SHOULD BE OVERWRITTEN";
 
   public void JsonParser () {
+
     try{
         JsonReader reader     = Json.createReader( new FileReader(jsonPath) );
         JsonStructure jsonStruct = reader.read();
@@ -40,14 +40,18 @@ public class Match {
           System.out.println("Casting to JsonObject...");
           JsonObject jo = (JsonObject) jsonStruct;
           System.out.println("Summonername: " + jo.getString("summonerName"));
+          test1 = jo.getString("summonerName").toString();
         }
     }catch(JsonException | FileNotFoundException e) {
         System.err.println("File not found: " + e.getMessage() + "\n" + jsonPath );
     }
+
+
   }
 
   public  void  MatchList() {
    System.out.println(END_POINT + QUERY);
+   System.out.println(test1);
   }
 
 

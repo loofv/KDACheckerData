@@ -1,5 +1,6 @@
 package servlets;
 
+import org.utils.Match;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -26,5 +27,8 @@ public class KDAServlet extends HttpServlet {
    out.println("<h1>KDAChecker is DOWN! for now.</h1>");
    out.println("</body>");
    out.println("</html>");
+
+  /* Match m = new Match();
+   m.JsonParser();*/
  }
 }
