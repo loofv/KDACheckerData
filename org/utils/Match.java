@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.net.URL;
-import javax.json.*;
+//import javax.json.*;
 //import javax.servlet.*;
 //fixa imports, importerar allt for now.
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.net.*;
 //import static javax.json.JsonValue.ValueType.*;
