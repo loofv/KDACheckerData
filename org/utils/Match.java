@@ -26,7 +26,7 @@ public class Match {
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/match/v3/matchlists/by-account/";
   private final String        QUERY     = ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
   private String              sep       = System.getProperty("file.separator");
-  private String              jsonPath  = /*"c:\\Cygwin64\\" +*/ System.getProperty("user.home")
+  private String              jsonPath  = System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
   public String test1 = "THIS SHOULD BE OVERWRITTEN";
 
