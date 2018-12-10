@@ -31,6 +31,12 @@ public class Match {
   private String              sep       = System.getProperty("file.separator");
   private String              jsonPath  = System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
+  private String queryAccountId;
+  private String queryMatchList;
+  private String queryMatchStats;
+  private String urlString;
+  private String SummonerName;
+  private int    accountId;
 /*  private String urlString;
 
   public String summonerName;
@@ -62,36 +68,39 @@ public class Match {
         System.err.println("File not found: " + e.getMessage() + "\n" + jsonPath );
     }
   }
-  public void GetStats() {
 
-    String queryAccountId;
+  public void GetStats() {
+   //flytta upp dessa?
+  /*  String queryAccountId;
     String queryMatchList;
     String queryMatchStats;
     String urlString;
+    int accountId;*/
+
+    /* Use accountId to get matchList, put matchIds in an arraylist or other list.
+       iterate over that list of matchIds to get stats for all those matches.
+       Put those stats into a kda-arraylist or other List */
 
     try {
-        queryAccountId = "summoner/v3/summoners/by-name/loofv?api_key=";
-        urlString = END_POINT + queryAccountId + API_KEY;
-        URL url = new URL (urlString);
-        JsonReader jr = Json.createReader(new InputStreamReader(url.openStream()));
-        System.out.println("junior funkar:" + jr.toString());
-        int accountId;
+        queryAccountId = "summoner/v3/summoners/by-name/loofv?api_key="; //hardcoded for account: loofv
+        urlString      = END_POINT + queryAccountId + API_KEY;
+        URL url        = new URL (urlString);
+        JsonReader jr  = Json.createReader(new InputStreamReader(url.openStream()));
+        System.out.println("junior funkar: " + jr.toString());
+
         JsonStructure jsonStruct = jr.read();
         JsonObject jo = (JsonObject) jsonStruct;
-        String name = jo.getString("name");
-        accountId = jo.getInt("accountId");
-        System.out.println("name: " + name + " accountId: " + accountId);
-
-        /*
-         Use accountId to get matchList, put matchIds in an arraylist or other list.
-         iterate over that list of matchIds to get stats for all those matches.
-         Put those stats into a kda-arraylist or other List
-        */
+        SummonerName  = jo.getString("name");
+        accountId     = jo.getInt("accountId");
+        System.out.println("name: "
+                              + SummonerName
+                                + "\n"
+                                  + "accountId: "
+                                    + accountId);
       } catch (Exception e) {
             e.printStackTrace();
     }
   }
-
 
   public  void  MatchList() {
    System.out.println(END_POINT + query);
