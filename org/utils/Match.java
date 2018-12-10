@@ -28,10 +28,9 @@ public class Match {
   private String              sep       = System.getProperty("file.separator");
   private String              jsonPath  = System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
-  public String test1 = "THIS SHOULD BE OVERWRITTEN";
+  //public String test1 = "THIS SHOULD BE OVERWRITTEN";
 
   public void JsonParser () {
-
     try{
         JsonReader reader     = Json.createReader( new FileReader(jsonPath) );
         JsonStructure jsonStruct = reader.read();
@@ -40,7 +39,9 @@ public class Match {
           System.out.println("Casting to JsonObject...");
           JsonObject jo = (JsonObject) jsonStruct;
           System.out.println("Summonername: " + jo.getString("summonerName"));
-          test1 = jo.getString("summonerName").toString();
+          
+          final String test1 = jo.toString();
+          System.out.println(test1); // För att see att test1 får ett värde från JSON
         }
     }catch(JsonException | FileNotFoundException e) {
         System.err.println("File not found: " + e.getMessage() + "\n" + jsonPath );
@@ -51,7 +52,7 @@ public class Match {
 
   public  void  MatchList() {
    System.out.println(END_POINT + QUERY);
-   System.out.println(test1);
+//   System.out.println(test1);
   }
 
 

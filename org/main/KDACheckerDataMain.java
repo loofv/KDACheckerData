@@ -10,6 +10,6 @@ public class KDACheckerDataMain {
   public static void main (String[] args) {
     Match m = new Match();
     m.MatchList();
-    //m.JsonParser();
+    m.JsonParser();
   }
 }
