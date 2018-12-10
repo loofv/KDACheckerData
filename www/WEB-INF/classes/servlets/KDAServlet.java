@@ -28,7 +28,7 @@ public class KDAServlet extends HttpServlet {
    out.println("</body>");
    out.println("</html>");
 
-  /* Match m = new Match();
-   m.JsonParser();*/
+   Match m = new Match();
+   m.JsonParser();
  }
 }
