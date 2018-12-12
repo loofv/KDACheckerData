@@ -60,8 +60,8 @@ public class Match {
           JsonObject jo = (JsonObject) jsonStruct;
           //System.out.println("Summonername: " + jo.getString("summonerName"));
 
-          final String test1 = jo.toString();
-          System.out.println(test1); // För att see att test1 får ett värde från JSON
+        //  final String test1 = jo.toString();
+        //  System.out.println(test1); // För att see att test1 får ett värde från JSON
 
         }
     }catch(JsonException | FileNotFoundException e) {
