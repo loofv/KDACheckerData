@@ -79,6 +79,18 @@ public class Match {
         int accountId;
         JsonStructure jsonStruct = jr.read();
         JsonObject jo = (JsonObject) jsonStruct;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        SummonerName  = jo.getString("name");
+        accountId     = jo.getInt("accountId");
+        System.out.println("name: "
+                              + SummonerName
+                                + "\n"
+                                  + "accountId: "
+                                    + accountId);
+=======
+>>>>>>> fea686a4711318f112750555dbfb15c64ae92dcf
         String name = jo.getString("name");
         accountId = jo.getInt("accountId");
         System.out.println("name: " + name + " accountId: " + accountId);
@@ -106,6 +118,10 @@ public class Match {
          Put those stats into a kda-arraylist or other List
         */
 
+<<<<<<< HEAD
+=======
+>>>>>>> 0d3d81b0c31af0eef84414b7c25b814ee2fd40af
+>>>>>>> fea686a4711318f112750555dbfb15c64ae92dcf
       } catch (Exception e) {
             e.printStackTrace();
     }
