@@ -62,28 +62,22 @@ public class Match {
         }
 /* ====================================================================================================== */
         jo = new JSONObject(sb.toString());
+        sb = new StringBuilder();
+        for (String line : reader.lines().collect(Collectors.toList())) {
+          sb.append(line);
+          System.out.println(sb + "\n");
+        }
         long matchId;
-        //System.out.println(jo);
-      //  ja = jo.getLong("gameId");
-      reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        reader = new BufferedReader(new InputStreamReader(url.openStream()));
         for (int i = 0; i < ja.length(); i++){
             JSONObject matchStats = ja.getJSONObject(i);
             queryMatchStats = "match/v3/matches/" + matchStats.getLong("gameId") + "?api_key=";
             urlString = END_POINT + queryMatchStats + API_KEY;
-
           //  System.out.println("Game " + i + ": " + matchStats);
-            System.out.println(urlString + "\n");
+            url = new URL (urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            System.out.println(urlString + matchStats.getString("summonerName") + "\n");
         }
-
-        url = new URL (urlString);
-        reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        sb = new StringBuilder();
-        for (String line : reader.lines().collect(Collectors.toList())) {
-          sb.append(line);
-          System.out.println(sb);
-        }
-
-
       } catch (Exception e) {
             e.printStackTrace();
     }
