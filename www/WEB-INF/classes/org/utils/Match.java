@@ -1,5 +1,6 @@
 package org.utils;
 
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 import java.net.URL;                                  //fixa imports, importerar allt for now.
 import java.util.stream.Collectors;
 import java.net.*;
-import static javax.json.JsonValue.ValueType.*;
+import org.json.*;
+
+//import static javax.json.JsonValue.ValueType.*;
 /*
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -19,7 +22,7 @@ import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
 import javax.json.JsonReader;*/
-import javax.json.*;
+//import javax.json.*;
 
 
 public class Match {
@@ -32,6 +35,7 @@ public class Match {
   private String              jsonPath  = System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
 
+/*
   public void JsonParser () {
     try{
         JsonReader reader     = Json.createReader( new FileReader(jsonPath) );
@@ -50,6 +54,7 @@ public class Match {
         System.err.println("File not found: " + e.getMessage() + "\n" + jsonPath );
     }
   }
+  */
   public void GetStats() {
 
     String queryAccountId;
@@ -62,7 +67,31 @@ public class Match {
         queryAccountId = "summoner/v3/summoners/by-name/loofv?api_key=";
         urlString = END_POINT + queryAccountId + API_KEY;
         URL url = new URL (urlString);
-        JsonReader jr = Json.createReader(new InputStreamReader(url.openStream()));
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        for (String line : reader.lines().collect(Collectors.toList())) {
+          sb.append(line);
+        }
+        System.out.println(sb);
+        JSONObject jo = new JSONObject(sb.toString());
+        long accountId = jo.getLong("accountId");
+        queryMatchList = "match/v3/matchlists/by-account/" + accountId + "?endIndex=10" + "&api_key=";
+        urlString = END_POINT + queryMatchList + API_KEY;
+        url = new URL (urlString);
+        reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        sb = new StringBuilder();
+        for (String line : reader.lines().collect(Collectors.toList())) {
+          sb.append(line);
+        }
+        jo = new JSONObject(sb.toString());
+        JSONArray ja = jo.getJSONArray("matches");
+        for (int i = 0; i < ja.length(); i++) {
+            JSONObject match = ja.getJSONObject(i);
+            System.out.println("GameId: "+ match.getLong("gameId"));
+        }
+
+        /*
+        (new InputStreamReader(url.openStream()));
         System.out.println("junior funkar:" + jr.toString());
         int accountId;
         JsonStructure jsonStruct = jr.read();
@@ -72,7 +101,6 @@ public class Match {
         System.out.println("name: " + name + " accountId: " + accountId);
 
 
-        queryMatchList = "match/v3/matchlists/by-account/" + accountId + "?endIndex=10" + "&api_key=";
         String urlString2 = END_POINT + queryMatchList + API_KEY;
         System.out.println("why be problem?: " + urlString2);
         URL url2 = new URL (urlString2);
@@ -81,14 +109,14 @@ public class Match {
         JsonStructure jsonStruct2 = jr2.read();
         JsonObject jo2 = (JsonObject) jsonStruct2;
         System.out.println("\n\n" + jo2.toString());
+*/
 
-
-        /*
+/*
         JsonArray ja = new JsonArray (jo2);
         ArrayList <Integer> matchList = new ArrayList<>();
         for (int i = 0; i < ja.size(); i++) {
         }
-        */
+*/
       /*
         ArrayList <Integer> matchList = new ArrayList<>();
         int j = 0;
