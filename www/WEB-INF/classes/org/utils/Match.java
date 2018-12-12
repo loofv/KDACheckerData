@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.io.FileReader;
 import java.util.List;
+import java.util.ArrayList;
 
 import java.net.URL;                                  //fixa imports, importerar allt for now.
 import java.util.stream.Collectors;
@@ -82,11 +83,29 @@ public class Match {
         accountId = jo.getInt("accountId");
         System.out.println("name: " + name + " accountId: " + accountId);
 
+        queryMatchList = "match/v3/matchlists/by-account/" + accountId + "?api_key=";
+
+        urlString = END_POINT + queryMatchList + API_KEY;
+        /*
+        URL url2 = new URL (urlString);
+        JsonReader jr2 = Json.createReader(new InputStreamReader(url.openStream()));
+        System.out.println("junior2 funkar:" + jr2.toString());
+        JsonStructure jsonStruct2 = jr2.read();
+        JsonObject jo2 = (JsonObject) jsonStruct2;
+        int matchId = 1337;
+        matchId = jo2.getInt ("matchId");
+        System.out.println(matchId);
+        System.out.println("matchId är: " + matchId);
+        ArrayList <Integer> matchList = new ArrayList<>();
+         */
+         //long gameId i riot api
+       //MatchReferenceDto är json objektet som gameId ligger i
         /*
          Use accountId to get matchList, put matchIds in an arraylist or other list.
          iterate over that list of matchIds to get stats for all those matches.
          Put those stats into a kda-arraylist or other List
         */
+
       } catch (Exception e) {
             e.printStackTrace();
     }
