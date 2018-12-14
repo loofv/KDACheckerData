@@ -31,9 +31,10 @@ public class Match {
     String queryMatchList;
     String queryMatchStats;
     String urlString;
-
+    String summonerName;
     try {
-        queryAccountId = "summoner/v3/summoners/by-name/loofv?api_key=";
+        summonerName = "lOOFv";
+        queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
         urlString = END_POINT + queryAccountId + API_KEY;
         URL url = new URL (urlString);
         StringBuilder  sb = new StringBuilder();
@@ -63,20 +64,62 @@ public class Match {
 /* ====================================================================================================== */
 
         long matchId;
+        int pID;
         reader = new BufferedReader(new InputStreamReader(url.openStream()));
         for (int i = 0; i < ja.length(); i++){
             JSONObject matchStats = ja.getJSONObject(i);
             queryMatchStats = "match/v3/matches/" + matchStats.getLong("gameId") + "?api_key=";
             urlString = END_POINT + queryMatchStats + API_KEY;
             url = new URL (urlString);
-            System.out.println(urlString);
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
             sb = new StringBuilder();
+            int u = 0;
+
             for (String line : reader.lines().collect(Collectors.toList())) {
+
                 sb.append(line);
                 jo = new JSONObject(sb.toString());
-                System.out.println("££££££matchfan: " +jo.getJSONArray("participants").getJSONObject(0).toString(2));
+                JSONArray participants = (jo.getJSONArray("participants"));
+                JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
+
+                for (int x = 0; x<participantIdentities.length(); x++) {
+                  if (participantIdentities.getJSONObject(x).getJSONObject("player").getString("summonerName").equals(summonerName)) {
+                    //System.out.println("\nSummonerName:  " + participantIdentities.getJSONObject(x).getJSONObject("player").getString("summonerName"));
+                    /*
+                    System.out.println("\nkills:  " + participantIdentities.getJSONObject(x).getJSONObject("player").getInt("kills"));
+                    System.out.println("\nassists:  " + participantIdentities.getJSONObject(x).getJSONObject("player").getInt("assists"));
+                    System.out.println("\ndeaths:  " + participantIdentities.getJSONObject(x).getJSONObject("player").getInt("deaths"));
+                    */
+                    //System.out.println("\n pID " + participantIdentities.getJSONObject(x).getInt("participantId"));
+                    pID = participantIdentities.getJSONObject(x).getInt("participantId");
+
+                    for (int y = 0; y<participants.length(); y++) {
+                      if (participants.getJSONObject(y).getInt("participantId")==(pID)) {
+                        System.out.println("pID: "+ pID + " summoner:" + summonerName + " kills:"  + participants.getJSONObject(y).getJSONObject("stats").getInt("kills"));
+                      }
+                    }
+
+                  }
+                }
+
+
+              //  System.out.println(participantIdentities.getJSONObject(2).getJSONObject("player").getString("summonerName"));
+                //u++;
+                //System.out.println("RAD i : \n " + "kills" + participants.getJSONObject(i).getJSONObject("stats").getInt("kills"));
+                /*
+                if (participantIdentities.getJSONObject(i).getJSONObject("player").getString("summonerName").equals("lOOFv")) {
+                  System.out.println("YYYY" + participantIdentities.getJSONObject(i).getJSONObject("player").getString("summonerName"));
+                }
+                */
+
+                //System.out.println("££££££matchfan: " +jo.getJSONArray("participants").getJSONObject(0).toString(2));
             }
+
+            /*
+            for (int u = 0; u<participants.length(); u++) {
+              System.out.println("Listnummer: " + u + participants.toString(2));
+            }
+            */
            //System.out.println("####barre" +jo.getJSONArray("participants").toString(2) + "NY MATCH \n\n");
         }
       } catch (Exception e) {
