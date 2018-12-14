@@ -69,13 +69,15 @@ public class Match {
             queryMatchStats = "match/v3/matches/" + matchStats.getLong("gameId") + "?api_key=";
             urlString = END_POINT + queryMatchStats + API_KEY;
             url = new URL (urlString);
+            System.out.println(urlString);
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
             sb = new StringBuilder();
             for (String line : reader.lines().collect(Collectors.toList())) {
                 sb.append(line);
                 jo = new JSONObject(sb.toString());
+                System.out.println("££££££matchfan: " +jo.getJSONArray("participants").getJSONObject(0).toString(2));
             }
-            System.out.println(jo.getJSONArray("participants").toString(2) + "\n");
+           //System.out.println("####barre" +jo.getJSONArray("participants").toString(2) + "NY MATCH \n\n");
         }
       } catch (Exception e) {
             e.printStackTrace();
