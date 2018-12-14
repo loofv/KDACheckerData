@@ -64,7 +64,6 @@ public class Match {
 
         long matchId;
         reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        //Denna loopar igenom arayen, försöker få den att göra nya calls.
         for (int i = 0; i < ja.length(); i++){
             JSONObject matchStats = ja.getJSONObject(i);
             queryMatchStats = "match/v3/matches/" + matchStats.getLong("gameId") + "?api_key=";
@@ -75,9 +74,8 @@ public class Match {
             for (String line : reader.lines().collect(Collectors.toList())) {
                 sb.append(line);
                 jo = new JSONObject(sb.toString());
-              //  System.out.println(jo);
             }
-            System.out.println(jo.getJSONArray("participants") + "\n");
+            System.out.println(jo.getJSONArray("participants").toString(2) + "\n");
         }
       } catch (Exception e) {
             e.printStackTrace();
