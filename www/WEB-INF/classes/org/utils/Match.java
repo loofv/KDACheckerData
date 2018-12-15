@@ -42,7 +42,7 @@ public class Match {
         for (String line : reader.lines().collect(Collectors.toList())) {
           sb.append(line);
         }
-        System.out.println("\n" + sb + "\n");
+          System.out.println("\n" + sb + "\n");
 /* ====================================================================================================== */
         JSONObject jo = new JSONObject(sb.toString());
         long accountId = jo.getLong("accountId");
@@ -87,11 +87,13 @@ public class Match {
                       pID = participantIdentities.getJSONObject(x).getInt("participantId");
                       for (int y = 0; y < participants.length(); y++) {
                         if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
-                          System.out.println("pID: "+ pID + " summoner:" + summonerName + " kills:"  + participants.getJSONObject(y).getJSONObject("stats").getInt("kills"));
+                          System.out.println("pID: " + pID + " summoner:" + summonerName  + "\nkills:: "   + participants.getJSONObject(y).getJSONObject("stats").getInt("kills")
+                                                                                          + "\ndeaths: "   + participants.getJSONObject(y).getJSONObject("stats").getInt("deaths")
+                                                                                          + "\nassists: "  + participants.getJSONObject(y).getJSONObject("stats").getInt("assists") + "\n");
                         }
                       }
                     } else {
-                    System.out.println("Player not found");
+                  //  System.out.println("Player not found");
                 }
               }
             }
