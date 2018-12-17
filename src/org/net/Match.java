@@ -1,4 +1,6 @@
-package org.utils;
+package org.net;
+
+import org.utils.Calculator;
 
 import org.*;
 
@@ -34,7 +36,8 @@ public class Match {
     String urlString;
     String summonerName;
     try {
-        summonerName = "w8%204%20gr8%20l8%20m8";
+        //summonerName = "w8%204%20gr8%20l8%20m8";
+          summonerName = "vimsig";
         queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
         urlString = END_POINT + queryAccountId + API_KEY;
         URL url = new URL (urlString);
@@ -117,7 +120,7 @@ public ArrayList<String> getStatsList() {
   String urlString;
   String summonerName;
   try {
-      summonerName = "loofv";
+      summonerName = "w8%204%20gr8%20l8%20m8";
       queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
       urlString = END_POINT + queryAccountId + API_KEY;
       URL url = new URL (urlString);
@@ -176,8 +179,8 @@ public ArrayList<String> getStatsList() {
                         int kills = participants.getJSONObject(y).getJSONObject("stats").getInt("kills");
                         int assists = participants.getJSONObject(y).getJSONObject("stats").getInt("assists");
                         int deaths =  participants.getJSONObject(y).getJSONObject("stats").getInt("deaths");
-
-                        System.out.println("\nkills:" + kills + "\nassists: " + assists + "\ndeaths: " + deaths);
+                        //utkommenterad printline som vi ej behöver
+                        //System.out.println("\nkills:" + kills + "\nassists: " + assists + "\ndeaths: " + deaths);
 
                         double kda = c.calculateKda(kills, deaths, assists); //k d a ordning viktig i calculator
                         statsList.add(String.valueOf(kda)); //ändrar doublen till string, annars får vi ej ha arraylist.

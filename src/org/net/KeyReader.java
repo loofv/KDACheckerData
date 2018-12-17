@@ -1,4 +1,4 @@
-package org.utils;
+package org.net;
 
 import java.io.File;
 import java.util.Scanner;

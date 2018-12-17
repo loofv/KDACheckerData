@@ -1,0 +1,7 @@
+konstruera de klasser vi behöver i java 
+ladda in json från riot API
+läsa json
+skapa server
+läsa json till server
+koppla server till android
+skapa android GUI
