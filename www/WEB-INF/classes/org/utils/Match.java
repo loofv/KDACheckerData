@@ -34,7 +34,7 @@ public class Match {
     String urlString;
     String summonerName;
     try {
-        summonerName = "lOOFv";
+        summonerName = "w8%204%20gr8%20l8%20m8";
         queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
         urlString = END_POINT + queryAccountId + API_KEY;
         URL url = new URL (urlString);
@@ -84,7 +84,7 @@ public class Match {
                 JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
 
                 for (int x = 0; x < participantIdentities.length(); x++) {
-                  if (participantIdentities.getJSONObject(x).getJSONObject("player").getString("summonerName").equals(summonerName)) {
+                  if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("accountId")==accountId) {
                       pID = participantIdentities.getJSONObject(x).getInt("participantId");
                       for (int y = 0; y < participants.length(); y++) {
                         if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
@@ -105,10 +105,10 @@ public class Match {
   }
 //------------------------testar ett sätt att fixa matchlista----------------------
 //skickar en arraylist med kda för 10 matcher i stringform. körs i main.
-// till stor del samma kod som getstats() metoden ovan 
+// till stor del samma kod som getstats() metoden ovan
 
 
-public ArrayList<String> GetStatsList() {
+public ArrayList<String> getStatsList() {
   ArrayList<String> statsList = new ArrayList<>();
   Calculator c = new Calculator();
   String queryAccountId;
@@ -117,7 +117,7 @@ public ArrayList<String> GetStatsList() {
   String urlString;
   String summonerName;
   try {
-      summonerName = "lOOFv";
+      summonerName = "loofv";
       queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
       urlString = END_POINT + queryAccountId + API_KEY;
       URL url = new URL (urlString);
@@ -126,7 +126,7 @@ public ArrayList<String> GetStatsList() {
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
       }
-        System.out.println("\n" + sb + "\n");
+        //System.out.println("\n" + sb + "\n"); testprintline som vi inte behöver längre
 /* ====================================================================================================== */
       JSONObject jo = new JSONObject(sb.toString());
       long accountId = jo.getLong("accountId");
@@ -140,11 +140,13 @@ public ArrayList<String> GetStatsList() {
       }
       jo = new JSONObject(sb.toString());
       JSONArray ja = jo.getJSONArray("matches");
+      /*
       for (int i = 0; i < ja.length(); i++) {
           JSONObject match = ja.getJSONObject(i);
           System.out.println("GameId: "+ match.getLong("gameId") + "\n");
 
       }
+      *///testprintline som vi inte behöver längre
 /* ====================================================================================================== */
 
       long matchId;
@@ -167,7 +169,7 @@ public ArrayList<String> GetStatsList() {
               JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
 
               for (int x = 0; x < participantIdentities.length(); x++) {
-                if (participantIdentities.getJSONObject(x).getJSONObject("player").getString("summonerName").equals(summonerName)) {
+                if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("accountId")==accountId) {
                     pID = participantIdentities.getJSONObject(x).getInt("participantId");
                     for (int y = 0; y < participants.length(); y++) {
                       if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
@@ -175,7 +177,9 @@ public ArrayList<String> GetStatsList() {
                         int assists = participants.getJSONObject(y).getJSONObject("stats").getInt("assists");
                         int deaths =  participants.getJSONObject(y).getJSONObject("stats").getInt("deaths");
 
-                        double kda = c.calculateKda(kills, assists, deaths);
+                        System.out.println("\nkills:" + kills + "\nassists: " + assists + "\ndeaths: " + deaths);
+
+                        double kda = c.calculateKda(kills, deaths, assists); //k d a ordning viktig i calculator
                         statsList.add(String.valueOf(kda)); //ändrar doublen till string, annars får vi ej ha arraylist.
                       }
                     }

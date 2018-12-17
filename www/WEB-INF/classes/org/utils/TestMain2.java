@@ -13,10 +13,10 @@ public class TestMain2 {
 //m.MatchList();
     //m.JsonParser();
     //m.GetStats();
-    ArrayList<String> statsList = m.GetStatsList();
+
+    ArrayList<String> statsList = m.getStatsList();
     for (int i =0; i<statsList.size(); i++) {
       System.out.println("Kda was: " + statsList.get(i));
     }
-
   }
 }
