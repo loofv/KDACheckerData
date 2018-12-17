@@ -2,6 +2,7 @@ package org.utils;
 
 //import org.utils.Match;
 //import org.utils.KeyReader;
+import java.util.ArrayList;
 
 
 public class TestMain2 {
@@ -11,6 +12,11 @@ public class TestMain2 {
    Match m = new Match();
 //m.MatchList();
     //m.JsonParser();
-    m.GetStats();
+    //m.GetStats();
+    ArrayList<String> statsList = m.GetStatsList();
+    for (int i =0; i<statsList.size(); i++) {
+      System.out.println("Kda was: " + statsList.get(i));
+    }
+
   }
 }
