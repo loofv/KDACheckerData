@@ -28,15 +28,4 @@ public class Calculator {
     return kda;
     }
   }
-
-
-/* en main som testar funktionalitet
-
-  public static void main (String[] args) {
-    Calculator c = new Calculator();
-    double kda;
-    kda = c.calculateKda(14, 3, 3);
-    System.out.println("Din kda är: " + kda);
-  } */
-
 }
