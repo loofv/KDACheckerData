@@ -28,16 +28,17 @@ public class Match {
                                                               + sep + "json" + sep + "testMatchIdentities.json";
 
 
-public ArrayList<String> getStatsList() {
+public ArrayList<String> getStatsList(String summonerName) {
   ArrayList<String> statsList = new ArrayList<>();
   Calculator c = new Calculator();
   String queryAccountId;
   String queryMatchList;
   String queryMatchStats;
   String urlString;
-  String summonerName;
+  //String summonerName;
   try {
-      summonerName = "w8%204%20gr8%20l8%20m8";
+    //summonerName = "w8%204%20gr8%20l8%20m8";
+    summonerName = "Justicebieber";
       queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
       urlString = END_POINT + queryAccountId + API_KEY;
       URL url = new URL (urlString);
@@ -45,11 +46,13 @@ public ArrayList<String> getStatsList() {
       BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
+        System.out.println(line);
       }
         //System.out.println("\n" + sb + "\n"); testprintline som vi inte behöver längre
 /* ====================================================================================================== */
       JSONObject jo = new JSONObject(sb.toString());
       long accountId = jo.getLong("accountId");
+
       queryMatchList = "match/v3/matchlists/by-account/" + accountId + "?endIndex=10" + "&api_key=";
       urlString = END_POINT + queryMatchList + API_KEY;
       url = new URL (urlString);
@@ -57,6 +60,7 @@ public ArrayList<String> getStatsList() {
       sb = new StringBuilder();
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
+        //System.out.println(line);
       }
       jo = new JSONObject(sb.toString());
       JSONArray ja = jo.getJSONArray("matches");
@@ -78,13 +82,18 @@ public ArrayList<String> getStatsList() {
           for (String line : reader.lines().collect(Collectors.toList())) {
 
               sb.append(line);
+              //System.out.println("Line: " + line);
               jo = new JSONObject(sb.toString());
               JSONArray participants = (jo.getJSONArray("participants"));
               JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
-
+              System.out.println("==========XXXXXXXXXXXXXX0" + participantIdentities.length());
               for (int x = 0; x < participantIdentities.length(); x++) {
-                if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("accountId")==accountId) {
+                System.out.println("YYYYYYYYY " + accountId);
+                System.out.println("YYYYYYYYY" + participantIdentities.getJSONObject(x).getJSONObject("player").getInt("accountId"));
+                System.out.println(participantIdentities.getJSONObject(x).getJSONObject("player").toString(2));
+                if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("currentAccountId")==accountId) {
                     pID = participantIdentities.getJSONObject(x).getInt("participantId");
+                    System.out.println("============================" + participants.length());
                     for (int y = 0; y < participants.length(); y++) {
                       if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
                         int kills = participants.getJSONObject(y).getJSONObject("stats").getInt("kills");
@@ -93,6 +102,7 @@ public ArrayList<String> getStatsList() {
 
                         double kda = c.calculateKda(kills, deaths, assists); //k d a ordning viktig i calculator
                         statsList.add(String.valueOf(kda)); //ändrar doublen till string, annars får vi ej ha arraylist.
+                        System.out.println(String.valueOf(kda));
                       }
                     }
                   }
