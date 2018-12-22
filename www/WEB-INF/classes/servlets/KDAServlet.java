@@ -16,7 +16,7 @@ public class KDAServlet extends HttpServlet {
  public void doGet(HttpServletRequest request, HttpServletResponse response)
   throws ServletException, IOException {
    request.setCharacterEncoding(UTF_8.name());
-   response.setContentType("text/html;charset="+UTF_8.name());
+  // response.setContentType("text/html;charset="+UTF_8.name()); //text/html
 
    PrintWriter out =
      new PrintWriter(new OutputStreamWriter(response.getOutputStream(),
@@ -30,7 +30,7 @@ public class KDAServlet extends HttpServlet {
    for (String kda : statsList) {
      ja.put(kda);
    }
-   out.println(ja.toString(2));
+   out.println(ja); //toString(2)
    /*
    out.println("<!DOCTYPE html>");
    out.println("<html lang=\"en\">");
