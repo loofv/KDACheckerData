@@ -42,7 +42,7 @@ public class KDAServlet extends HttpServlet {
    }
 
    out.println(ja);
-    
+  
 
  } //else sats slutar
 
