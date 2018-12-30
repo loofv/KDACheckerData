@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.io.FileReader;
 import java.util.List;
 import java.util.ArrayList;
-import java.net.URL;                                  //fixa imports, importerar allt for now.
+import java.net.URL;
 import java.util.stream.Collectors;
 import java.net.*;
 import org.json.*;
@@ -22,11 +22,6 @@ public class Match {
   KeyReader kr = new KeyReader();
   private final String        API_KEY   = kr.readKey();
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/";
-  private String              query;     //= ("34158466?api_key="+ API_KEY); //Insert API Key from KeyReader
-  private String              sep       = System.getProperty("file.separator");
-  private String              jsonPath  = System.getProperty("user.home")
-                                                              + sep + "json" + sep + "testMatchIdentities.json";
-
 
 public ArrayList<String> getStatsList(String summonerName) {
   ArrayList<String> statsList = new ArrayList<>();
@@ -35,10 +30,8 @@ public ArrayList<String> getStatsList(String summonerName) {
   String queryMatchList;
   String queryMatchStats;
   String urlString;
-  //String summonerName;
+
   try {
-    //summonerName = "w8%204%20gr8%20l8%20m8";
-      //summonerName = "lOOFv";
       queryAccountId = "summoner/v3/summoners/by-name/"+ summonerName +"?api_key=";
       urlString = END_POINT + queryAccountId + API_KEY;
       URL url = new URL (urlString);
@@ -46,9 +39,8 @@ public ArrayList<String> getStatsList(String summonerName) {
       BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
-        //System.out.println(line);
       }
-        //System.out.println("\n" + sb + "\n"); testprintline som vi inte behöver längre
+
 /* ====================================================================================================== */
       JSONObject jo = new JSONObject(sb.toString());
       long accountId = jo.getLong("accountId");
@@ -60,7 +52,6 @@ public ArrayList<String> getStatsList(String summonerName) {
       sb = new StringBuilder();
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
-        //System.out.println(line);
       }
       jo = new JSONObject(sb.toString());
       JSONArray ja = jo.getJSONArray("matches");
@@ -82,37 +73,30 @@ public ArrayList<String> getStatsList(String summonerName) {
           for (String line : reader.lines().collect(Collectors.toList())) {
 
               sb.append(line);
-              //System.out.println("Line: " + line);
               jo = new JSONObject(sb.toString());
               JSONArray participants = (jo.getJSONArray("participants"));
               JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
-              //System.out.println("==========XXXXXXXXXXXXXX0" + participantIdentities.length());
+
               for (int x = 0; x < participantIdentities.length(); x++) {
-                //System.out.println("YYYYYYYYY " + accountId);
-                //System.out.println("YYYYYYYYY" + participantIdentities.getJSONObject(x).getJSONObject("player").getInt("accountId"));
-                //System.out.println(participantIdentities.getJSONObject(x).getJSONObject("player").toString(2));
                 if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("currentAccountId")==accountId) {
                     pID = participantIdentities.getJSONObject(x).getInt("participantId");
-                    //System.out.println("============================" + participants.length());
                     for (int y = 0; y < participants.length(); y++) {
                       if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
                         int kills = participants.getJSONObject(y).getJSONObject("stats").getInt("kills");
                         int assists = participants.getJSONObject(y).getJSONObject("stats").getInt("assists");
                         int deaths =  participants.getJSONObject(y).getJSONObject("stats").getInt("deaths");
 
-                        double kda = c.calculateKda(kills, deaths, assists); //k d a ordning viktig i calculator
-                        statsList.add(String.valueOf(kda)); //ändrar doublen till string, annars får vi ej ha arraylist.
-                        //System.out.println(String.valueOf(kda));
+                        double kda = c.calculateKda(kills, deaths, assists);
+                        statsList.add(String.valueOf(kda));
                       }
                     }
                   }
+                }
               }
-          }
-        }
-      } catch (Exception e) {
-          e.printStackTrace();
+            }
+          } catch (Exception e) {
+            e.printStackTrace();
+      }
+      return statsList;
     }
-    return statsList;
-  }
-
 }
