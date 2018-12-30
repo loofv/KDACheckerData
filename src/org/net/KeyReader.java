@@ -8,7 +8,10 @@ public class KeyReader  {
 
   String key;
   String KEY_PATH = "key.txt";
+<<<<<<< HEAD
   //key.txt ska ligga i huvudkatalogen
+=======
+>>>>>>> a5b328dc914b95c1906a72688ebef1520db0bd67
   public String readKey () {
     key = "Could not read file content";
 

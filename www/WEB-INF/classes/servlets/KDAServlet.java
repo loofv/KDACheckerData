@@ -32,7 +32,11 @@ public class KDAServlet extends HttpServlet {
           out.println(ja);
           } else {
             ArrayList<String> statsList = m.getStatsList(summonerName);
+<<<<<<< HEAD
             System.out.println("Summonername given: " + summonerName);
+=======
+            System.out.println("vad försnmame" + summonerName);
+>>>>>>> a5b328dc914b95c1906a72688ebef1520db0bd67
             JSONArray ja = new JSONArray();
 
               for (String kda : statsList) {

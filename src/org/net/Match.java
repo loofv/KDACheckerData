@@ -39,7 +39,11 @@ public ArrayList<String> getStatsList(String summonerName) {
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
       }
+<<<<<<< HEAD
   // hämtar accountId via med hjälp av summonerName
+=======
+
+>>>>>>> a5b328dc914b95c1906a72688ebef1520db0bd67
 /* ====================================================================================================== */
       JSONObject jo = new JSONObject(sb.toString());
       long accountId = jo.getLong("accountId");
@@ -75,7 +79,11 @@ public ArrayList<String> getStatsList(String summonerName) {
               jo = new JSONObject(sb.toString());
               JSONArray participants = (jo.getJSONArray("participants"));
               JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
+<<<<<<< HEAD
               //gör en join-liknande operation på våra olika JSON-sökningar för att få ut spelarstats för varje match (senaste 10)
+=======
+
+>>>>>>> a5b328dc914b95c1906a72688ebef1520db0bd67
               for (int x = 0; x < participantIdentities.length(); x++) {
                 if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("currentAccountId")==accountId) {
                     pID = participantIdentities.getJSONObject(x).getInt("participantId");

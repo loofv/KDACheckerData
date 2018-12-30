@@ -12,7 +12,6 @@ public class Main {
    ArrayList<String> statsList = m.getStatsList("Justicebieber");
     for (int i =0; i<statsList.size(); i++) {
       System.out.println("Kda was: " + statsList.get(i));
-
     }
   }
 }
