@@ -10,9 +10,8 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.io.FileReader;
-import java.util.List;
 import java.util.ArrayList;
-import java.net.URL;                                  //fixa imports, importerar allt for now.
+import java.net.URL;
 import java.util.stream.Collectors;
 import java.net.*;
 import org.json.*;
@@ -22,7 +21,7 @@ public class Match {
   KeyReader kr = new KeyReader();
   private final String        API_KEY   = kr.readKey();
   private static final String END_POINT = "https://euw1.api.riotgames.com/lol/";
-  private String              query;   
+  private String              query;
   private String              sep       = System.getProperty("file.separator");
   private String              jsonPath  = System.getProperty("user.home")
                                                               + sep + "json" + sep + "testMatchIdentities.json";
@@ -35,7 +34,7 @@ public ArrayList<String> getStatsList(String summonerName) {
   String queryMatchList;
   String queryMatchStats;
   String urlString;
-  //String summonerName;
+
   try {
 
 
@@ -47,8 +46,10 @@ public ArrayList<String> getStatsList(String summonerName) {
       BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
       for (String line : reader.lines().collect(Collectors.toList())) {
         sb.append(line);
-        System.out.println(line);
       }
+      // hämtar accountId via med hjälp av summonerName
+
+
 /* ====================================================================================================== */
       JSONObject jo = new JSONObject(sb.toString());
       String accountId = jo.getString("accountId");
@@ -63,7 +64,7 @@ public ArrayList<String> getStatsList(String summonerName) {
       }
       jo = new JSONObject(sb.toString());
       JSONArray ja = jo.getJSONArray("matches");
-
+ //hämtar matcher för givet accountId, genererar unika MatchIDs som används nedan
 /* ====================================================================================================== */
 
       long matchId;
@@ -84,12 +85,15 @@ public ArrayList<String> getStatsList(String summonerName) {
               jo = new JSONObject(sb.toString());
               JSONArray participants = (jo.getJSONArray("participants"));
               JSONArray participantIdentities = (jo.getJSONArray("participantIdentities"));
-              for (int x = 0; x < participantIdentities.length(); x++) {
 
-                if (participantIdentities.getJSONObject(x).getJSONObject("player").getString("currentAccountId").equals(accountId)) {
+              for (int x = 0; x < participantIdentities.length(); x++) {
+                if (participantIdentities.getJSONObject(x).getJSONObject("player").getInt("currentAccountId")==accountId) {
+
                     pID = participantIdentities.getJSONObject(x).getInt("participantId");
                     for (int y = 0; y < participants.length(); y++) {
+
                       if (participants.getJSONObject(y).getInt("participantId") == (pID)) {
+
                         int kills = participants.getJSONObject(y).getJSONObject("stats").getInt("kills");
                         int assists = participants.getJSONObject(y).getJSONObject("stats").getInt("assists");
                         int deaths =  participants.getJSONObject(y).getJSONObject("stats").getInt("deaths");
@@ -100,13 +104,11 @@ public ArrayList<String> getStatsList(String summonerName) {
                       }
                     }
                   }
+                }
               }
-          }
-        }
-      } catch (Exception e) {
-          e.printStackTrace();
-    }
-    return statsList;
-  }
-
+            }
+          } catch (Exception e) {
+            e.printStackTrace();
+      }
+      return statsList;  
 }
