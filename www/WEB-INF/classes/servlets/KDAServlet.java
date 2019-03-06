@@ -30,7 +30,7 @@ public class KDAServlet extends HttpServlet {
    for (String kda : statsList) {
      ja.put(kda);
    }
-   out.println(ja.toString(2));
+   out.println(ja.toString());
    /*
    out.println("<!DOCTYPE html>");
    out.println("<html lang=\"en\">");
